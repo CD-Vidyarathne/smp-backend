@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,10 +20,15 @@ public class UserService {
     return repo.findAll();
   }
   public User getUserById(String id) {
-    System.out.println("Fetching user by ID: " + id);
     return repo.findById(new ObjectId(id)).orElse(User.builder().build());
   }
-  public User registerUser(User user){
+
+  public User getUserByEmail(String email){
+    return repo.findByEmail(email).orElse(User.builder().build());
+  }
+  public User registerUser( User user){
+    user.setJoinedDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+    user.setActive(false);
     return repo.save(user);
   }
 }
