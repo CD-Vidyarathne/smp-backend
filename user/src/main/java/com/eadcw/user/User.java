@@ -1,5 +1,7 @@
 package com.eadcw.user;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+  @JsonSerialize(using = ToStringSerializer.class)
   @MongoId(FieldType.OBJECT_ID)
   private ObjectId id;
   private String firstname;
