@@ -25,6 +25,7 @@ public class User {
   private String lastname;
   private String email;
   private String password;
-  private boolean isActive;
+  private String imageURL;
+  private boolean active;
   private String joinedDate;
 }

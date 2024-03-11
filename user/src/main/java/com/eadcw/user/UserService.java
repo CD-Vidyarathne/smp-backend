@@ -26,6 +26,10 @@ public class UserService {
   public User getUserByEmail(String email){
     return repo.findByEmail(email).orElse(User.builder().build());
   }
+
+  public User updateUser(User user){
+    return repo.save(user);
+  }
   public User registerUser( User user){
     user.setJoinedDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
     user.setActive(false);

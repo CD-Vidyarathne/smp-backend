@@ -31,6 +31,11 @@ public class UserController {
     return ResponseEntity.ok(userService.getUserByEmail(email));
   }
 
+  @PostMapping("/update")
+  public ResponseEntity<User> updateUser(@RequestBody User user){
+    return ResponseEntity.ok(userService.updateUser(user));
+  }
+
   @PostMapping("/register")
   public User registerUser(@RequestBody User user){
     return userService.registerUser(user);
