@@ -31,7 +31,7 @@ public class UserService {
     return repo.save(user);
   }
   public User registerUser( User user){
-    user.setJoinedDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+    user.setJoinedDate(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
     user.setActive(false);
     return repo.save(user);
   }
