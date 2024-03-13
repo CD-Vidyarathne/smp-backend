@@ -19,7 +19,8 @@ public class PostService {
   private final UserClient userClient;
 
   public List<PostResponse> getAllPosts(){
-    List<Post> posts = repo.findAll();
+    Sort sort = Sort.by(Sort.Direction.DESC,"id");
+    List<Post> posts = repo.findAll(sort);
     List<PostResponse> postResponses = new ArrayList<>();
 
     for(Post post:posts){
