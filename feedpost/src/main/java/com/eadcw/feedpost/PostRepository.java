@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface PostRepository extends MongoRepository<Post, ObjectId> {
 
-  List<Post> findAll(Sort sort);
 
 }
