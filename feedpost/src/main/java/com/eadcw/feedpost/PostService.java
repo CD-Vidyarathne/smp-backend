@@ -35,8 +35,7 @@ public class PostService {
   public PostResponse getPostById(String id){
     Post post = repo.findById(new ObjectId(id)).orElse(Post.builder().build());
     User user = userClient.getUserOfThePost(post.getUserid());
-    PostResponse resPost = generatePostResponse(post,user);
-    return resPost;
+    return generatePostResponse(post,user);
   }
 
  public Post createPost(Post post){

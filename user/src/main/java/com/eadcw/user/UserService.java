@@ -20,6 +20,7 @@ public class UserService {
     return repo.findAll();
   }
   public User getUserById(String id) {
+
     return repo.findById(new ObjectId(id)).orElse(User.builder().build());
   }
 
