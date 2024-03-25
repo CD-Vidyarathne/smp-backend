@@ -22,7 +22,6 @@ public class CommentService {
     comment.setPostid(postId);
     comment.setCommentDate(new SimpleDateFormat("dd.MM.yyyy HH:mm").format(new Date()));
     var res = repo.save(comment);
-    System.out.println(res);
     return res;
   }
 

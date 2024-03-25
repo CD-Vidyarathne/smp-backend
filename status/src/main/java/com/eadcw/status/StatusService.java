@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class StatusService {
   private final UserClient userClient;
 
   public Status createStatus(Status status){
+    status.setStatusTime(new SimpleDateFormat("HH:mm").format(new Date()));
     return repo.save(status);
   }
 
@@ -27,6 +29,7 @@ public class StatusService {
     List<Status> statusList = repo.findAll(sort);
     List<StatusResponse> statusResponses = new ArrayList<>();
     for(Status status:statusList){
+      System.out.println(status.getUserid());
       User user = userClient.getUserOfTheStatus(status.getUserid());
       StatusResponse res = generateStatusResponse(status,user);
       statusResponses.add(res);
@@ -45,8 +48,6 @@ public class StatusService {
   }
 
   private StatusResponse generateStatusResponse(Status status,User user){
-    System.out.println(status);
-    System.out.println(user);
     return StatusResponse.builder()
             .statusId(String.valueOf(status.getId()))
             .statusImgURL(status.getImgURL())

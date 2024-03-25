@@ -1,6 +1,7 @@
 package com.eadcw.feedpost;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.lang.annotation.DeclareError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/posts")
 @RequiredArgsConstructor
-@CrossOrigin(origins="http://localhost:5173")
 public class PostController {
 
   private final PostService postService;
@@ -28,4 +28,8 @@ public class PostController {
     return postService.createPost(post);
   }
 
+  @DeleteMapping("/delete/{id}")
+  public void deletePost(@PathVariable("id") String id){
+    postService.deletePost(id);
+  }
 }

@@ -43,6 +43,10 @@ public class PostService {
    return repo.save(post);
  }
 
+ public void deletePost(String id){
+    repo.deleteById(new ObjectId(id));
+ }
+
  private PostResponse generatePostResponse(Post post,User user){
    return PostResponse.builder()
            .userFirstname(user.getFirstname())
